@@ -63,7 +63,7 @@ componentDidMount(){
   fetchRecipes(){
     const searchString = this.state.activeIngredients.map(item => item.ingredient)
                                                      .join(",")
-    fetch(`https://api.edamam.com/search?q=${searchString}&app_id=cc90edfa&app_key=6e8835559144d18e1285510b948a2945`)
+    return fetch(`https://api.edamam.com/search?q=${searchString}&app_id=cc90edfa&app_key=6e8835559144d18e1285510b948a2945`)
       .then(response => response.json())
       .then(body => {
         this.setState({
