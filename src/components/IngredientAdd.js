@@ -30,9 +30,9 @@ class IngredientAdd extends React.Component{
 
   render(){
     return(
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} type="text"></input>
-        <button onClick={this.handleSubmit} type="submit"></button>
+        <button type="submit"></button>
       </form>
     )
   }

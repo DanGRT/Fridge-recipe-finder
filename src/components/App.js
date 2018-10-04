@@ -45,10 +45,13 @@ componentDidMount(){
 
 
   retrieveIngredients(ingredient, property){
+    const newList = this.state[property].concat(ingredient);
     this.setState({
-      [property]: this.state[property].concat(ingredient)
-    }, () => window.localStorage.setItem(property, JSON.stringify(this.state.stock)));
-
+      [property]: newList
+    });
+    if(property === 'stock'){
+      window.localStorage.setItem(property, JSON.stringify(newList))
+    }
   }
 
   removeIngredients(ingredient, property){
@@ -63,7 +66,6 @@ componentDidMount(){
     fetch(`https://api.edamam.com/search?q=${searchString}&app_id=cc90edfa&app_key=6e8835559144d18e1285510b948a2945`)
       .then(response => response.json())
       .then(body => {
-        console.log(body)
         this.setState({
           searchResults: body.hits
 
