@@ -1,9 +1,11 @@
 .fridge-item{
   border: 1px solid black;
   background-color: white;
+  list-style: none;
 
   &--selected{
     background-color: green;
+    list-style: none;
   }
 
 }

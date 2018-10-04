@@ -83,7 +83,9 @@ componentDidMount(){
                 removeIngredients={this.removeIngredients}
                 fetchRecipes={this.fetchRecipes}
               />
-        <SearchRecipes searchResults={this.state.searchResults}/>
+        <SearchRecipes stock={this.state.stock}
+                       searchResults={this.state.searchResults}
+                     />
 
       </div>
     )
