@@ -1,0 +1,10 @@
+@import '../colours';
+
+.ingredient-add{
+  display: flex;
+  justify-content: center;
+  background-color: $app-grey;
+  margin: 1rem;
+  padding: 0.5rem;
+
+}

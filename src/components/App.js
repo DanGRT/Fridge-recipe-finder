@@ -8,6 +8,7 @@ import Header from './Header.js'
 import IngredientAdd from './IngredientAdd.js'
 import Fridge from "./Fridge.js"
 import SearchRecipes from "./SearchRecipes.js"
+import Loading from './Loading.js'
 
 import '../styles/components/app.scss';
 
@@ -24,7 +25,9 @@ class App extends React.Component {
 
       activeIngredients: [],
 
-      searchResults: []
+      searchResults: [],
+
+      loading: false
     }
 
     this.retrieveIngredients = this.retrieveIngredients.bind(this)
@@ -74,11 +77,15 @@ componentDidMount(){
   fetchRecipes(){
     const searchString = this.state.activeIngredients.map(item => item.ingredient)
                                                      .join(",")
+    this.setState({
+      loading: true
+    })
     return fetch(`https://api.edamam.com/search?q=${searchString}&app_id=cc90edfa&app_key=6e8835559144d18e1285510b948a2945`)
       .then(response => response.json())
       .then(body => {
         this.setState({
-          searchResults: body.hits
+          searchResults: body.hits,
+          loading: false
 
         })
       })
@@ -87,7 +94,7 @@ componentDidMount(){
   render(){
     return (
       <div className="app">
-        <Header />
+        <Header changeDisplay={this.changeDisplay}/>
         {this.state.display === 'fridge'
         ?(<React.Fragment>
           <IngredientAdd retrieveIngredients={this.retrieveIngredients} />
@@ -100,7 +107,12 @@ componentDidMount(){
                  </React.Fragment> )
           : null }
 
-        {this.state.display === 'recipes'
+        {this.state.loading === true
+          ? <Loading />
+          : null
+        }
+
+        {this.state.display === 'recipes' && this.state.loading === false
         ? <SearchRecipes stock={this.state.stock}
                        searchResults={this.state.searchResults}
                      />

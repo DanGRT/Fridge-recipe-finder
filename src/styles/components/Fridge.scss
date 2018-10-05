@@ -1,0 +1,17 @@
+@import '../colours';
+.fridge{
+  background-color: $app-grey;
+  height: 70vh;
+  padding: 2rem;
+  margin: 0rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 2px solid $accent-orange;
+  border-left: 2px solid $accent-orange;
+
+
+  &__item-container{
+    padding-left: 0px;
+  }
+}

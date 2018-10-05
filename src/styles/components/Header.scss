@@ -1,0 +1,22 @@
+@import '../colours';
+
+.header{
+  background-color: $header-blue;
+  display: flex;
+  flex-direction: row;
+
+  &__logo-text{
+    border: 1px solid black;
+  }
+
+  &__nav{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+
+    &Link{
+      margin-right: 1rem;
+      align-self: center;
+    }
+  }
+}

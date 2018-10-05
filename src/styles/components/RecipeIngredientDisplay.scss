@@ -1,0 +1,11 @@
+.recipe-ingredient{
+  border: 1px solid black;
+  background-color: red;
+  list-style: none;
+
+  &--in-stock{
+    border: 1px solid black;
+    background-color: green;
+    list-style: none;
+  }
+}
