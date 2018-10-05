@@ -20,22 +20,30 @@ class IngredientAdd extends React.Component{
     const ingredientObject = {ingredient: this.state.text,
                               key: uuidv4()}
     this.props.retrieveIngredients(ingredientObject, 'stock')
+
   }
 
   handleChange(event){
     this.setState({
       text: event.target.value
     })
+
   }
 
 
 
   render(){
     return(
-      <form className='ingredient-add' onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} type="text"></input>
-        <button type="submit">Add</button>
-      </form>
+
+
+        <form className='ingredient-add' onSubmit={this.handleSubmit}>
+          <h3 className='ingredient-add__text'>Been Shopping?</h3>
+          <div className='ingredient-add__form'>
+          <input onChange={this.handleChange} type="text"></input>
+          <button type="submit">Add</button>
+          </div>
+        </form>
+
     )
   }
 }

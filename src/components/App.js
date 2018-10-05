@@ -80,7 +80,7 @@ componentDidMount(){
     this.setState({
       loading: true
     })
-    return fetch(`https://api.edamam.com/search?q=${searchString}&app_id=cc90edfa&app_key=6e8835559144d18e1285510b948a2945`)
+    return fetch(`https://api.edamam.com/search?q=${searchString}&app_id=2d8fec19&app_key=483c6a76cb6386a4eaf149a5505868b8`)
       .then(response => response.json())
       .then(body => {
         this.setState({

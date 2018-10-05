@@ -8,7 +8,8 @@ class Header extends React.Component{
     this.returnFridge = this.returnFridge.bind(this)
   }
 
-  returnFridge(){
+  returnFridge(event){
+    event.preventDefault()
     this.props.changeDisplay('fridge')
   }
 
@@ -18,10 +19,11 @@ class Header extends React.Component{
     return (
       <header className="header">
         <h1 className="header__logo-text">Fridge</h1>
-        <ul className='header__nav'>
-          <li onClick={this.returnFridge} className='header__navLink'>My Fridge</li>
-          <li className='header__navLink'>Saved Recipes</li>
-        </ul>
+        <div className='header__nav'>
+           <a href="" onClick={this.returnFridge} className='header__nav-link'>My <br/>Fridge</a>
+           <a href="" className='header__nav-link'>Saved <br /> Recipes</a>
+
+        </div>
       </header>
     )
   }

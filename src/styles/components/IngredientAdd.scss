@@ -3,8 +3,15 @@
 .ingredient-add{
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: $app-grey;
   margin: 1rem;
-  padding: 0.5rem;
+  padding: 1rem 1rem 2rem 1rem;
+  text-align: center;
 
+
+  &__form{
+    display: flex;
+  }
 }
