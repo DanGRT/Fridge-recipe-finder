@@ -1,6 +1,8 @@
 import React from "react"
 import FridgeItem from "./FridgeItem.js"
 
+import '../styles/components/Fridge.scss';
+
 class Fridge extends React.Component{
   constructor(){
     super()
@@ -11,12 +13,13 @@ class Fridge extends React.Component{
 
   handleClick(event){
     this.props.fetchRecipes()
+    this.props.changeDisplay('recipes')
   }
 
   render(){
     return(
     <div className="fridge">
-      <ul>
+      <ul className='fridge__item-container'>
         {this.props.stock.map(item => {
           const isSelected = this.props.activeIngredients.find(ingredient => ingredient.key === item.key);
           return (

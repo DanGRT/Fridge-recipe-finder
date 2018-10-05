@@ -1,4 +1,6 @@
 import React from "react";
+
+import '../styles/components/IngredientAdd.scss';
 const uuidv4 = require('uuid/v4');
 
 class IngredientAdd extends React.Component{
@@ -30,9 +32,9 @@ class IngredientAdd extends React.Component{
 
   render(){
     return(
-      <form onSubmit={this.handleSubmit}>
+      <form className='ingredient-add' onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} type="text"></input>
-        <button type="submit"></button>
+        <button type="submit">Add</button>
       </form>
     )
   }

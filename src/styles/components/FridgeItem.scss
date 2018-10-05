@@ -1,11 +1,29 @@
+@import '../colours';
+
 .fridge-item{
-  border: 1px solid black;
-  background-color: white;
+  border: 2px solid $dark-color;
+  border-radius: 10%;
+  color: $dark-color;
+  background-color: $off-white;
   list-style: none;
+  display: flex;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
   &--selected{
-    background-color: green;
     list-style: none;
+    border: 2px solid $dark-color;
+    border-radius: 10%;
+    color: $dark-color;
+    background-color: $accent-orange;
+    list-style: none;
+    display: flex;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 
 }

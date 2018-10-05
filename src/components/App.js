@@ -4,6 +4,7 @@
 
 
 import React from 'react';
+import Header from './Header.js'
 import IngredientAdd from './IngredientAdd.js'
 import Fridge from "./Fridge.js"
 import SearchRecipes from "./SearchRecipes.js"
@@ -16,6 +17,9 @@ class App extends React.Component {
     super();
 
     this.state = {
+
+      display: 'fridge', // 'fridge' or 'recipes'
+
       stock: [],
 
       activeIngredients: [],
@@ -26,6 +30,7 @@ class App extends React.Component {
     this.retrieveIngredients = this.retrieveIngredients.bind(this)
     this.removeIngredients = this.removeIngredients.bind(this)
     this.fetchRecipes = this.fetchRecipes.bind(this)
+    this.changeDisplay = this.changeDisplay.bind(this)
   }
 
 // componentDidMount(){
@@ -40,6 +45,12 @@ componentDidMount(){
     stock: stockArray
   });
 }
+
+  changeDisplay(displayType){
+    this.setState({
+      display: displayType
+    })
+  }
 
 
 
@@ -76,16 +87,24 @@ componentDidMount(){
   render(){
     return (
       <div className="app">
-        <IngredientAdd retrieveIngredients={this.retrieveIngredients} />
-        <Fridge stock={this.state.stock}
-                activeIngredients={this.state.activeIngredients}
-                retrieveIngredients={this.retrieveIngredients}
-                removeIngredients={this.removeIngredients}
-                fetchRecipes={this.fetchRecipes}
-              />
-        <SearchRecipes stock={this.state.stock}
+        <Header />
+        {this.state.display === 'fridge'
+        ?(<React.Fragment>
+          <IngredientAdd retrieveIngredients={this.retrieveIngredients} />
+           <Fridge stock={this.state.stock}
+                   activeIngredients={this.state.activeIngredients}
+                   retrieveIngredients={this.retrieveIngredients}
+                   removeIngredients={this.removeIngredients}
+                   fetchRecipes={this.fetchRecipes}
+                   changeDisplay={this.changeDisplay} />
+                 </React.Fragment> )
+          : null }
+
+        {this.state.display === 'recipes'
+        ? <SearchRecipes stock={this.state.stock}
                        searchResults={this.state.searchResults}
                      />
+        : null}
 
       </div>
     )
