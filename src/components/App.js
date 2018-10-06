@@ -36,10 +36,7 @@ class App extends React.Component {
     this.changeDisplay = this.changeDisplay.bind(this)
   }
 
-// componentDidMount(){
-//   fetch('https://api.edamam.com/search?q=chicken,garlic,corn&app_id=cc90edfa&app_key=6e8835559144d18e1285510b948a2945')
-//   .then(response => response.json())
-//   .then(b
+
 
 componentDidMount(){
   const currentStock = window.localStorage.getItem('stock');
