@@ -19,7 +19,7 @@ class App extends React.Component {
 
     this.state = {
 
-      display: 'fridge', // 'fridge' or 'recipes'
+      display: 'fridge', // 'fridge' or 'recipes' or 'favourites'
 
       stock: [],
 
@@ -27,11 +27,14 @@ class App extends React.Component {
 
       searchResults: [],
 
-      loading: false
+      loading: false,
+
+      favourites: []
+
     }
 
-    this.retrieveIngredients = this.retrieveIngredients.bind(this)
-    this.removeIngredients = this.removeIngredients.bind(this)
+    this.retrieveItem = this.retrieveItem.bind(this)
+    this.removeItem = this.removeItem.bind(this)
     this.fetchRecipes = this.fetchRecipes.bind(this)
     this.changeDisplay = this.changeDisplay.bind(this)
   }
@@ -41,8 +44,11 @@ class App extends React.Component {
 componentDidMount(){
   const currentStock = window.localStorage.getItem('stock');
   const stockArray = currentStock ? JSON.parse(currentStock) : [];
+  const currentFaves = window.localStorage.getItem('favourites')
+  const favesArray = currentFaves ? JSON.parse(currentFaves) : [];
   this.setState({
-    stock: stockArray
+    stock: stockArray,
+    favourites: favesArray
   });
 }
 
@@ -54,21 +60,26 @@ componentDidMount(){
 
 
 
-
-  retrieveIngredients(ingredient, property){
+  retrieveItem(ingredient, property){
     const newList = this.state[property].concat(ingredient);
+
     this.setState({
       [property]: newList
     });
-    if(property === 'stock'){
+    if(property !== 'activeIngredients'){
       window.localStorage.setItem(property, JSON.stringify(newList))
     }
   }
 
-  removeIngredients(ingredient, property){
+  removeItem(ingredient, property){
+    const newList = this.state[property].filter(item => item.key !== ingredient.key)
     this.setState({
-      [property]: this.state[property].filter(item => item != ingredient)
+      [property]: newList
     })
+    if(property !== 'activeIngredients'){
+      window.localStorage.setItem(property, JSON.stringify(newList))
+    }
+
   }
 
   fetchRecipes(){
@@ -94,11 +105,11 @@ componentDidMount(){
         <Header changeDisplay={this.changeDisplay}/>
         {this.state.display === 'fridge'
         ?(<React.Fragment>
-          <IngredientAdd retrieveIngredients={this.retrieveIngredients} />
+          <IngredientAdd retrieveItem={this.retrieveItem} />
            <Fridge stock={this.state.stock}
                    activeIngredients={this.state.activeIngredients}
-                   retrieveIngredients={this.retrieveIngredients}
-                   removeIngredients={this.removeIngredients}
+                   retrieveItem={this.retrieveItem}
+                   removeItem={this.removeItem}
                    fetchRecipes={this.fetchRecipes}
                    changeDisplay={this.changeDisplay} />
                  </React.Fragment> )
@@ -111,9 +122,18 @@ componentDidMount(){
 
         {this.state.display === 'recipes' && this.state.loading === false
         ? <SearchRecipes stock={this.state.stock}
-                       searchResults={this.state.searchResults}
+                         recipeResults={this.state.searchResults}
+                         retrieveItem={this.retrieveItem}
                      />
         : null}
+
+        {this.state.display === 'favourites'
+        ? <SearchRecipes stock={this.state.stock}
+                         recipeResults={this.state.favourites}
+                         retrieveItem={this.retrieveItem}
+                       />
+        : null
+        }
 
       </div>
     )

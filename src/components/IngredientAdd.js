@@ -19,7 +19,7 @@ class IngredientAdd extends React.Component{
     event.preventDefault()
     const ingredientObject = {ingredient: this.state.text,
                               key: uuidv4()}
-    this.props.retrieveIngredients(ingredientObject, 'stock')
+    this.props.retrieveItem(ingredientObject, 'stock')
 
   }
 
@@ -29,7 +29,6 @@ class IngredientAdd extends React.Component{
     })
 
   }
-
 
 
   render(){

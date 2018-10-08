@@ -14,10 +14,12 @@ class SearchRecipes extends React.Component{
     return (
 
       <div className="search-recipes">
-        {this.props.searchResults.map(result => {
+        {this.props.recipeResults.map(result => {
           return <IndividualRecipe key={result.recipe.uri}
                                    recipe={result.recipe}
+                                   entireRecipe={result}
                                    stock={this.props.stock}
+                                   retrieveItem={this.props.retrieveItem}
                                  />
         })}
 

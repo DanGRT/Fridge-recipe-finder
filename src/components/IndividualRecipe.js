@@ -9,6 +9,7 @@ class IndividualRecipe extends React.Component{
 
     this.checkAvailableIngredients = this.checkAvailableIngredients.bind(this)
     this.displayIngredients = this.displayIngredients.bind(this)
+    this.handleFave = this.handleFave.bind(this)
 
     this.state = {
       matchingIngredients: [],
@@ -44,13 +45,21 @@ class IndividualRecipe extends React.Component{
     })
   }
 
+  handleFave(event){
+    event.preventDefault()
+    this.props.retrieveItem(this.props.entireRecipe, "favourites")
+  }
+
   render(){
     return (
     <div className="individual-recipe">
       <img className="individual-recipe__image" src={this.props.recipe.image}/>
         <div className="individual-recipe__info">
         <h6>{this.props.recipe.label}</h6>
+        <span className="individual-recipe__recipe-bar">
         <a href={this.props.recipe.url}>See Recipe</a>
+        <a onClick={this.handleFave} href=""><i className="far fa-star"></i></a>
+      </span>
         <span onClick={this.displayIngredients}>{this.state.matchingIngredients.length} out of {this.props.recipe.ingredients.length} ingredients</span>
         {this.state.displayIngredients ? <RecipeIngredientDisplay
                                               recipeIngredients={this.props.recipe.ingredients}

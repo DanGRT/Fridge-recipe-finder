@@ -9,16 +9,22 @@ class FridgeItem extends React.Component{
 
 
     this.handleClick = this.handleClick.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
   }
 
 
 
   handleClick(event){
     if (!this.props.isSelected){
-      this.props.retrieveIngredients(this.props.item, "activeIngredients")
+      this.props.retrieveItem(this.props.item, "activeIngredients")
     }else{
-      this.props.removeIngredients(this.props.item, "activeIngredients")
+      this.props.removeItem(this.props.item, "activeIngredients")
     }
+  }
+
+  handleRemove(event){
+    event.preventDefault()
+    this.props.removeItem(this.props.item, "stock")
   }
 
 
@@ -30,7 +36,7 @@ class FridgeItem extends React.Component{
     })
 
     return(
-    <li className={classes} onClick={this.handleClick}>{this.props.item.ingredient} </li>
+    <li className={classes} onClick={this.handleClick}>{this.props.item.ingredient} <a href="" className="fridge-item__remove" onClick={this.handleRemove}><i className="fas fa-trash-alt"></i></a> </li>
   )
   }
 }

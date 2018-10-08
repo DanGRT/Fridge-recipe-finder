@@ -6,11 +6,11 @@
   color: $dark-color;
   background-color: $off-white;
   list-style: none;
-  display: flex;
+  text-align: center;
   padding: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+
+
+
 
   &--selected{
     list-style: none;
@@ -19,11 +19,16 @@
     color: $dark-color;
     background-color: $accent-orange;
     list-style: none;
-    display: flex;
     padding: 0.5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    text-align: center;
+
+  }
+
+  &__remove{
+    float: right;
+
+
+
   }
 
 }

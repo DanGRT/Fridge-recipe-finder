@@ -26,8 +26,8 @@ class Fridge extends React.Component{
             <FridgeItem key={item.key}
                         item={item}
                         isSelected={isSelected}
-                        retrieveIngredients={this.props.retrieveIngredients}
-                        removeIngredients={this.props.removeIngredients}/>
+                        retrieveItem={this.props.retrieveItem}
+                        removeItem={this.props.removeItem}/>
           )
         })}
         <button onClick={this.handleClick}>Find me recipes with selected</button>
