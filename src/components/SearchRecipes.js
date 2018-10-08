@@ -8,6 +8,21 @@ import '../styles/components/SearchRecipes.scss'
 class SearchRecipes extends React.Component{
   constructor(){
     super()
+
+
+    this.handlePagination= this.handlePagination.bind(this)
+
+  }
+
+
+  handlePagination(event){
+    event.preventDefault()
+    let page;
+    event.target.value === 'next'
+      ? page = this.props.page + 20
+      : page = this.props.page - 20
+    this.props.retrievePage(page, "page")
+    this.props.fetchRecipes(page)
   }
 
   render(){
@@ -24,10 +39,12 @@ class SearchRecipes extends React.Component{
                                    favourites={this.props.favourites}
                                  />
         })}
+        <button value="previous" onClick={this.handlePagination}>Previous</button><button value="next" onClick={this.handlePagination}>Next</button>
 
       </div>
     )
   }
 }
+
 
 export default SearchRecipes;

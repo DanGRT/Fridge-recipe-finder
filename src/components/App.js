@@ -29,12 +29,15 @@ class App extends React.Component {
 
       loading: false,
 
-      favourites: []
+      favourites: [],
+
+      page: 0
 
     }
 
     this.retrieveItem = this.retrieveItem.bind(this)
     this.removeItem = this.removeItem.bind(this)
+    this.retrievePage = this.retrievePage.bind(this)
     this.fetchRecipes = this.fetchRecipes.bind(this)
     this.changeDisplay = this.changeDisplay.bind(this)
   }
@@ -55,6 +58,12 @@ componentDidMount(){
   changeDisplay(displayType){
     this.setState({
       display: displayType
+    })
+  }
+
+  retrievePage(page){
+    this.setState({
+      page
     })
   }
 
@@ -85,13 +94,13 @@ componentDidMount(){
 
   }
 
-  fetchRecipes(){
+  fetchRecipes(page = 0){
     const searchString = this.state.activeIngredients.map(item => item.ingredient)
                                                      .join(",")
     this.setState({
       loading: true
     })
-    return fetch(`https://api.edamam.com/search?q=${searchString}&app_id=2d8fec19&app_key=483c6a76cb6386a4eaf149a5505868b8`)
+    return fetch(`https://api.edamam.com/search?q=${searchString}&from=${page}&app_id=2d8fec19&app_key=483c6a76cb6386a4eaf149a5505868b8`)
       .then(response => response.json())
       .then(body => {
         this.setState({
@@ -109,16 +118,16 @@ componentDidMount(){
       <div className="app">
         <Header changeDisplay={this.changeDisplay}/>
         {this.state.display === 'fridge'
-        ?(<React.Fragment>
-          <IngredientAdd retrieveItem={this.retrieveItem}  />
-           <Fridge stock={this.state.stock}
-                   activeIngredients={this.state.activeIngredients}
-                   retrieveItem={this.retrieveItem}
-                   removeItem={this.removeItem}
-                   fetchRecipes={this.fetchRecipes}
-                   changeDisplay={this.changeDisplay} />
-                 </React.Fragment> )
-          : null }
+          ?(<React.Fragment>
+            <IngredientAdd retrieveItem={this.retrieveItem}  />
+             <Fridge stock={this.state.stock}
+                     activeIngredients={this.state.activeIngredients}
+                     retrieveItem={this.retrieveItem}
+                     removeItem={this.removeItem}
+                     fetchRecipes={this.fetchRecipes}
+                     changeDisplay={this.changeDisplay} />
+                   </React.Fragment> )
+            : null }
 
         {this.state.loading === true
           ? <Loading />
@@ -126,23 +135,28 @@ componentDidMount(){
         }
 
         {this.state.display === 'recipes' && this.state.loading === false
-        ? <SearchRecipes stock={this.state.stock}
-                         favourites={this.state.favourites}
-                         recipeResults={this.state.searchResults}
-                         retrieveItem={this.retrieveItem}
-                         removeItem={this.removeItem}
-                     />
-        : null}
+          ? <SearchRecipes stock={this.state.stock}
+                           favourites={this.state.favourites}
+                           recipeResults={this.state.searchResults}
+                           retrieveItem={this.retrieveItem}
+                           retrievePage={this.retrievePage}
+                           removeItem={this.removeItem}
+                           fetchRecipes={this.fetchRecipes}
+                           page={this.state.page}
+                       />
+          : null}
 
         {this.state.display === 'favourites'
-        ? <SearchRecipes stock={this.state.stock}
-                         favourites={this.state.favourites}
-                         recipeResults={this.state.favourites}
-                         retrieveItem={this.retrieveItem}
-                         removeItem={this.removeItem}
-                       />
-        : null
-        }
+          ? <SearchRecipes stock={this.state.stock}
+                           favourites={this.state.favourites}
+                           recipeResults={this.state.favourites}
+                           retrieveItem={this.retrieveItem}
+                           removeItem={this.removeItem}
+                           fetchRecipes={this.fetchRecipes}
+                           page={this.state.page}
+                         />
+          : null
+          }
 
       </div>
     )
