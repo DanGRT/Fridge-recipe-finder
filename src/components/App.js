@@ -73,7 +73,7 @@ componentDidMount(){
 
   removeItem(ingredient, property){
     let newList;
-    property === 'stock'
+    property !== 'favourites'
       ?  newList = this.state[property].filter(item => item.key !== ingredient.key)
       :  newList = this.state[property].filter(item => item.recipe.uri !== ingredient.recipe.uri)
     this.setState({
