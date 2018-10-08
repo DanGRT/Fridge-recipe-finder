@@ -20,6 +20,8 @@ class SearchRecipes extends React.Component{
                                    entireRecipe={result}
                                    stock={this.props.stock}
                                    retrieveItem={this.props.retrieveItem}
+                                   removeItem={this.props.removeItem}
+                                   favourites={this.props.favourites}
                                  />
         })}
 

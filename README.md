@@ -19,6 +19,8 @@ finder. You add items to your fridge/stock and are able to find recipes using th
 
 * Loading screen due to slow response from API
 
+* Favourites menu
+
 ## Implementation
 
 * Written with React. I have made some components stateless, but this requires further work.
@@ -31,8 +33,6 @@ finder. You add items to your fridge/stock and are able to find recipes using th
   * Using some sort of conditional list, to specify if stock words are followed by another particular word then they are not relevant (i.e if "rice" followed by "wine")
   * Using Edamam API's Ingredient/nutrition system. This requires further reading as to whether this would be suitable
 
-
-* Favourites button does not lead anywhere as favouriting is not in place
 
 * No pagination on recipes
 
@@ -49,5 +49,3 @@ finder. You add items to your fridge/stock and are able to find recipes using th
 * If measurement of ingredient was in place, I would like to implement a "cook" button that subtracted the amount of an ingredient specified by recipe from the user's stock list.
 
 * More information regarding nutritional and dietary considerations on each recipe, more information regarding cooking time and servings made (all in standard API response)
-
-* Favourites to be put in place

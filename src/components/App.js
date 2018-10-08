@@ -72,7 +72,10 @@ componentDidMount(){
   }
 
   removeItem(ingredient, property){
-    const newList = this.state[property].filter(item => item.key !== ingredient.key)
+    let newList;
+    property === 'stock'
+      ?  newList = this.state[property].filter(item => item.key !== ingredient.key)
+      :  newList = this.state[property].filter(item => item.recipe.uri !== ingredient.recipe.uri)
     this.setState({
       [property]: newList
     })
@@ -99,13 +102,15 @@ componentDidMount(){
       })
   }
 
+
+
   render(){
     return (
       <div className="app">
         <Header changeDisplay={this.changeDisplay}/>
         {this.state.display === 'fridge'
         ?(<React.Fragment>
-          <IngredientAdd retrieveItem={this.retrieveItem} />
+          <IngredientAdd retrieveItem={this.retrieveItem}  />
            <Fridge stock={this.state.stock}
                    activeIngredients={this.state.activeIngredients}
                    retrieveItem={this.retrieveItem}
@@ -122,15 +127,19 @@ componentDidMount(){
 
         {this.state.display === 'recipes' && this.state.loading === false
         ? <SearchRecipes stock={this.state.stock}
+                         favourites={this.state.favourites}
                          recipeResults={this.state.searchResults}
                          retrieveItem={this.retrieveItem}
+                         removeItem={this.removeItem}
                      />
         : null}
 
         {this.state.display === 'favourites'
         ? <SearchRecipes stock={this.state.stock}
+                         favourites={this.state.favourites}
                          recipeResults={this.state.favourites}
                          retrieveItem={this.retrieveItem}
+                         removeItem={this.removeItem}
                        />
         : null
         }
