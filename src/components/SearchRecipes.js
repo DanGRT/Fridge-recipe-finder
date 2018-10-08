@@ -39,7 +39,11 @@ class SearchRecipes extends React.Component{
                                    favourites={this.props.favourites}
                                  />
         })}
-        <button value="previous" onClick={this.handlePagination}>Previous</button><button value="next" onClick={this.handlePagination}>Next</button>
+        {this.props.page > 0
+         ? <button value="previous" onClick={this.handlePagination}>Previous</button>
+         : null
+      }
+        <button value="next" onClick={this.handlePagination}>Next</button>
 
       </div>
     )

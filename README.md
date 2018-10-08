@@ -33,8 +33,7 @@ finder. You add items to your fridge/stock and are able to find recipes using th
   * Using some sort of conditional list, to specify if stock words are followed by another particular word then they are not relevant (i.e if "rice" followed by "wine")
   * Using Edamam API's Ingredient/nutrition system. This requires further reading as to whether this would be suitable
 
-
-* No pagination on recipes
+* RecipeIngredientDisplay does not have keys for individual ingredients
 
 
 * No desktop/tablet design
