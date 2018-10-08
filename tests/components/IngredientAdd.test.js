@@ -19,7 +19,7 @@ describe('IngredientAdd', () => {
 
     const mockRetrieveIngredient = jest.fn()
 
-    const wrapper = shallow(<IngredientAdd retrieveIngredients={mockRetrieveIngredient} />)
+    const wrapper = shallow(<IngredientAdd retrieveItem={mockRetrieveIngredient} />)
     wrapper.find('input').simulate("change", changeEvent)
     wrapper.find('form').simulate("submit", submitEvent)
     // expect()

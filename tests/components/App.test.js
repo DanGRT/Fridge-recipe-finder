@@ -22,7 +22,7 @@ describe('App', () => {
     const ingredient = 'apple'
     const wrapper = shallow(<App />)
     const instance = wrapper.instance()
-    instance.retrieveIngredients(ingredient, 'stock')
+    instance.retrieveItem(ingredient, 'stock')
     const stock = wrapper.state('stock')
     expect(stock).toEqual([ingredient])
   })
@@ -37,7 +37,7 @@ describe('App', () => {
     fetch.mockResponse(
       JSON.stringify({hits: RECIPES})
     )
-    
+
     const wrapper = shallow(<App />)
     const instance = wrapper.instance()
     instance.fetchRecipes()
