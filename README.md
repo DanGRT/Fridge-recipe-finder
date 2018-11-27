@@ -8,14 +8,32 @@
 Project brief was to create our own project using the technologies learned so far. I have decided to make a web app utilising React and the Edamam API to create a recipe
 finder. You add items to your fridge/stock and are able to find recipes using these ingredients.
 
+# Hosted on surge
+
+http://fridge-fetch.surge.sh/
+
+Note: This app has been designed with mobile-use in mind. It is reccomended users use dev tools to simulate a mobile browser view.
+
+
+## Running from source
+
+* Clone this repository
+
+* Run `npm install` to install dependencies.
+
+* Run `npm run dev` to build with webpack
+
+* Access localhost:8080 to view
+
+Note: This app has been designed with mobile-use in mind. It is reccomended users use dev tools to simulate a mobile browser view.
+
 ## Features
 
 * Ingredients in stock are stored in local storage.
 
 * Select any number of stocked ingredients and return recipes using those ingredients.
 
-* Recipe display looks at your entire stock (ingredients need not be selected) and tells you how many of the required ingredients you have. Clicking on this text reveals
- an easy to read display - ingredients not in stock are in red, in stock are in green.
+* Recipe display looks at your entire stock (ingredients need not be selected) and tells you how many of the required ingredients you have. Clicking on this text reveals an easy to read display - ingredients not in stock are in red, in stock are in green.
 
 * Loading screen due to slow response from API
 
@@ -35,6 +53,7 @@ finder. You add items to your fridge/stock and are able to find recipes using th
 
 * RecipeIngredientDisplay does not have keys for individual ingredients
 
+* You can currently add anything to the fridge regardless of whether it is a known ingredient or not. My QA team (i.e. friends) have already informed me there are no recipes from the API that list "smegma" as an ingredient.
 
 * No desktop/tablet design
 

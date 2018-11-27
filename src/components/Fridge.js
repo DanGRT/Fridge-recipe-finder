@@ -30,7 +30,12 @@ class Fridge extends React.Component{
                         removeItem={this.props.removeItem}/>
           )
         })}
-        <button onClick={this.handleClick}>Find me recipes with selected</button>
+        {this.props.stock.length === 0
+          ? <h3 className="fridge___no-items">No food? Try adding ingredients above</h3>
+          : <button onClick={this.handleClick}>Find me recipes with selected</button>
+
+        }
+
 
 
       </ul>
